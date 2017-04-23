@@ -54,7 +54,8 @@ class RoundsPage extends Component {
     if (this.props.rounds.length === 0) {
       return true;
     }
-    return this.props.rounds[this.props.rounds.length - 1].finished;
+    const lastRound = this.props.rounds[this.props.rounds.length -1];
+    return lastRound.pairings.every((p) => p.result !== null);
   }
 
   canRewdrawRound() {
@@ -62,12 +63,10 @@ class RoundsPage extends Component {
       return false;
     }
     const lastRound = this.props.rounds[this.props.rounds.length - 1];
-    if (this.currentRound.number !== lastRound.number || lastRound.finished) {
+    if (this.currentRound.number !== lastRound.number || lastRound.pairings.every((p) => p.result !== null)) {
       return false;
     }
-    return lastRound.pairings.filter((pair) => {
-      return pair.result !== null;
-    }).length === 0;
+    return true;
   }
 
   selectRound(roundNumber) {

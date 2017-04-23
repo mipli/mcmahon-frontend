@@ -1,4 +1,5 @@
-import React, {Component, PropTypes}  from 'react';
+import React, {Component}  from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -8,7 +9,8 @@ import * as PlayerModel from '../../models/Player';
 
 const mapStateToProps = (state) => {
   return {
-    players: state.players
+    players: state.players,
+    tournamentId: state.tournament ? state.tournament._id : null
   };
 };
 
@@ -24,6 +26,7 @@ class PlayerPage extends Component {
   static get propTypes() {
     return {
       players: PropTypes.arrayOf(PlayerModel.propType),
+      tournamentId: PropTypes.string,
       registerPlayer: PropTypes.func,
       updatePlayer: PropTypes.func,
       deletePlayer: PropTypes.func,
