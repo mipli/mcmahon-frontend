@@ -4,10 +4,16 @@ export const validate = (obj) => {
   if (typeof obj._id !== 'string') {
     return false;
   }
-  if (typeof obj.name !== 'string') {
+  if (typeof obj.firstname !== 'string') {
     return false;
   }
-  if (typeof obj.rank !== 'number') {
+  if (typeof obj.lastname !== 'string') {
+    return false;
+  }
+  if (typeof obj.rank !== 'string') {
+    return false;
+  }
+  if (obj.score && typeof obj.score !== 'number') {
     return false;
   }
   return true;

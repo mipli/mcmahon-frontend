@@ -9,7 +9,7 @@ import * as PlayerModel from '../../models/Player';
 
 const mapStateToProps = (state) => {
   return {
-    players: state.players,
+    players: state.tournament ? state.tournament.players : [],
     tournamentId: state.tournament ? state.tournament._id : null
   };
 };
@@ -40,8 +40,22 @@ class PlayerPage extends Component {
     super(props);
   }
 
-  registerPlayer(input) {
-    this.props.registerPlayer(input);
+  get registerPlayer() {
+    return (data) => {
+      this.props.registerPlayer(this.props.tournamentId, data);
+    }
+  }
+
+  get updatePlayer() {
+    return (data) => {
+      this.props.updatePlayer(this.props.tournamentId, data);
+    }
+  }
+
+  get deletePlayer() {
+    return (data) => {
+      this.props.deletePlayer(this.props.tournamentId, data);
+    }
   }
 
   get selectedPlayer() {
@@ -64,7 +78,7 @@ class PlayerPage extends Component {
           <ol>
             {
               this.props.players.map((player, i) => {
-                return <li key={i}><Link to={`/players/${player._id}`}>{player.name}, {player.rank}</Link></li>;
+                return <li key={i}><Link to={`/players/${player._id}`}>{player.firstname} {player.lastname}, {player.rank}</Link></li>;
               })
             }
           </ol>
@@ -79,9 +93,9 @@ class PlayerPage extends Component {
             </div>
           </div>
           <PlayerForm
-            registerPlayer={this.props.registerPlayer}
-            updatePlayer={this.props.updatePlayer}
-            deletePlayer={this.props.deletePlayer}
+            registerPlayer={this.registerPlayer}
+            updatePlayer={this.updatePlayer}
+            deletePlayer={this.deletePlayer}
             player={this.selectedPlayer}
           />
         </div>

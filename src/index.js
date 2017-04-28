@@ -15,7 +15,7 @@ const store = configureStore({
   tournaments: [],
   tournament: null
 });
-store.dispatch(playerActions.fetchPlayers());
+store.dispatch(playerActions.fetchPlayers('58fa6c699b463b491144772d'));
 
 render(
   <Provider store={store}>

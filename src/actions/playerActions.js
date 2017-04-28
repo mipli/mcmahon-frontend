@@ -10,9 +10,9 @@ export const registerPlayerSuccess = createAction('REGISTER_PLAYER_SUCCESS');
 export const updatePlayerSuccess = createAction('UPDATE_PLAYER_SUCCESS');
 export const deletePlayerSuccess = createAction('DELETE_PLAYER_SUCCESS');
 
-export const fetchPlayers = () => {
+export const fetchPlayers = (tournamentId) => {
   return (dispatch) => {
-    return apiServer('/players')
+    return apiServer('/tournaments/' + tournamentId + '/players')
       .then(response => {
         dispatch(fetchPlayersSuccess(response.data));
       })
@@ -22,10 +22,14 @@ export const fetchPlayers = () => {
   };
 };
 
-export const registerPlayer = (player) => {
+export const registerPlayer = (tournamentId, player) => {
   return (dispatch) => {
+    if (!tournamentId || !player) {
+      console.log("Why am I here?!");
+      return;
+    }
     delete player._id;
-    return apiServer({url: '/players/', method: 'post', data: player})
+    return apiServer({url: '/tournaments/' + tournamentId + '/players/', method: 'post', data: [player]})
       .then(response => {
         const player = response.data;
         dispatch(registerPlayerSuccess(player));
@@ -36,9 +40,9 @@ export const registerPlayer = (player) => {
   };
 };
 
-export const updatePlayer = (player) => {
+export const updatePlayer = (tournamentId, player) => {
   return (dispatch) => {
-    return apiServer({url: '/players/' + player._id, method: 'put', data: player})
+    return apiServer({url: '/tournaments/' + tournamentId + '/players/' + player._id, method: 'put', data: player})
       .then(response => {
         const player = response.data;
         dispatch(updatePlayerSuccess(player));
@@ -50,9 +54,9 @@ export const updatePlayer = (player) => {
 };
 
 
-export const deletePlayer = (player) => {
+export const deletePlayer = (tournamentId, player) => {
   return (dispatch) => {
-    return apiServer({url: '/players/' + player._id, method: 'delete'})
+    return apiServer({url: '/tournaments/' + tournamentId + '/players/' + player._id, method: 'delete'})
       .then(() => {
         dispatch(deletePlayerSuccess(player));
       })

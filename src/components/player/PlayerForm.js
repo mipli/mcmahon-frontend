@@ -15,7 +15,8 @@ class PlayerForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: props.player ? props.player.name : '',
+      firstname: props.player ? props.player.firstname : '',
+      lastname: props.player ? props.player.lastname : '',
       rank: props.player ? props.player.rank : '',
       _id: props.player ? props.player._id : ''
     };
@@ -29,9 +30,14 @@ class PlayerForm extends Component {
           _id: player._id
         });
       }
-      if (this.state.name !== player.name) {
+      if (this.state.firstname !== player.firstname) {
         this.setState({
-          name: player.name
+          firstname: player.firstname
+        });
+      }
+      if (this.state.lastname !== player.lastname) {
+        this.setState({
+          lastname: player.lastname
         });
       }
       if (this.state.rank !== player.rank) {
@@ -44,15 +50,21 @@ class PlayerForm extends Component {
     }
   }
 
-  nameChanged(event) {
+  lastnameChanged(event) {
     this.setState({
-      name: event.target.value
+      lastname: event.target.value
+    });
+  }
+
+  firstnameChanged(event) {
+    this.setState({
+      firstname: event.target.value
     });
   }
 
   rankChanged(event) {
     this.setState({
-      rank: parseInt(event.target.value)
+      rank: event.target.value
     });
   }
 
@@ -80,9 +92,17 @@ class PlayerForm extends Component {
   clearState() {
     this.setState({
       _id: '',
-      name: '',
+      firstname: '',
+      lastname: '',
       rank: ''
     });
+  }
+
+  getRegisterUpdateText() {
+    if (this.state._id !== '') {
+      return 'Update player';
+    }
+    return 'Register player';
   }
 
   render() {
@@ -90,14 +110,26 @@ class PlayerForm extends Component {
       <form onSubmit={(event) => this.formSubmit(event)}
       className="form-horizontal">
         <div className="row">
-          <label className="col-sm-2 control-label">Name: </label>
+          <label className="col-sm-2 control-label">Firstname: </label>
           <div className="col-sm-10">
             <input
               type="text"
-              name="name"
+              name="firstname"
               className="form-control"
-              value={this.state.name}
-              onChange={(event) => this.nameChanged(event)} />
+              value={this.state.firstname}
+              onChange={(event) => this.firstnameChanged(event)} />
+          </div>
+        </div>
+        <br />
+        <div className="row">
+          <label className="col-sm-2 control-label">Lastname: </label>
+          <div className="col-sm-10">
+            <input
+              type="text"
+              name="lastname"
+              className="form-control"
+              value={this.state.lastname}
+              onChange={(event) => this.lastnameChanged(event)} />
           </div>
         </div>
         <br />
@@ -105,7 +137,7 @@ class PlayerForm extends Component {
           <label className="col-sm-2 control-label">Rank: </label>
           <div className="col-sm-10">
             <input
-              type="number"
+              type="text"
               name="rank"
               className="form-control"
               value={this.state.rank}
@@ -115,7 +147,7 @@ class PlayerForm extends Component {
         <br />
         <div className="row">
           <div className="col-sm-offset-2 col-sm-6">
-            <input type="submit" className="btn btn-default" value="Register/Update Player" />
+            <input type="submit" className="btn btn-default" value={this.getRegisterUpdateText()} />
           </div>
           <div className="col-sm-4">
             <input type="button" className="btn btn-danger pull-right" value="Delete Player" onClick={event => this.deletePlayer(event)}/>

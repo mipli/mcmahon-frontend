@@ -1,3 +1,4 @@
+/*
 function removePlayerFromState(player, state) {
   const idx = state.findIndex((p) => {
     return p._id === player._id;
@@ -7,9 +8,11 @@ function removePlayerFromState(player, state) {
   }
   return [...state.slice(0, idx), ...state.slice(idx + 1)];
 }
+*/
 
 export default (state = [], action) => {
   switch (action.type) {
+      /*
     case 'FETCH_PLAYERS_SUCCESS':
       return action.payload;
     case 'REGISTER_PLAYER_SUCCESS':
@@ -21,6 +24,7 @@ export default (state = [], action) => {
       });
     case 'DELETE_PLAYER_SUCCESS':
       return removePlayerFromState(action.payload, state);
+      */
     default:
       return state;
   }

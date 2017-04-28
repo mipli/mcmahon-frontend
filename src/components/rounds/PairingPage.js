@@ -7,8 +7,8 @@ import * as roundsActions from '../../actions/roundsActions';
 
 const mapStateToProps = (state) => {
   return {
-    players: state.players,
-    tournamentId: state.tournament ? state.tournament._id : null,
+    players: state.tournament ? state.tournament.players : null,
+    tournamentId: state.tournament ? state.tournament._id : null
   };
 };
 
@@ -67,8 +67,8 @@ class PairingsPage extends Component {
                 const result = pair.result;
                 return (<tr key={i}>
                   <td>{i}</td>
-                  <td>{black ? black.name : ''}</td>
-                  <td>{white ? white.name : ''}</td>
+                  <td>{black ? black.firstname + ' ' + black.lastname : ''}</td>
+                  <td>{white ? white.firstname + ' ' + white.lastname : ''}</td>
                   <td onClick={() => this.changeResult(i)}>{result}</td>
                 </tr>);
               })
