@@ -1,3 +1,11 @@
 table.pairings td {
   margin: 10px;
 }
+
+table.pairings td {
+  margin: 10px;
+}
+
+table.result-row .winner {
+  font-weight: bold;
+}

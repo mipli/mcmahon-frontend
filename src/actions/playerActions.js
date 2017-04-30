@@ -25,7 +25,6 @@ export const fetchPlayers = (tournamentId) => {
 export const registerPlayer = (tournamentId, player) => {
   return (dispatch) => {
     if (!tournamentId || !player) {
-      console.log("Why am I here?!");
       return;
     }
     delete player._id;
