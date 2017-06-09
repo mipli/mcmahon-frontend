@@ -7,7 +7,7 @@ export default (state = [], action) => {
   switch (action.type) {
     case 'FETCH_TOURNAMENTS_SUCCESS':
       return action.payload.map(stripChildValues);
-    case 'CREATE_TOURNAMENTS_SUCCESS':
+    case 'CREATE_TOURNAMENT_SUCCESS':
       return [...state, action.payload];
     default:
       return state;

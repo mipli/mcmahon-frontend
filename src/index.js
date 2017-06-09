@@ -6,16 +6,15 @@ import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-import * as playerActions from './actions/playerActions';
+import * as tournamentActions from './actions/tournamentActions';
 
 import configureStore from './store/configureStore';
 
 const store = configureStore({
-  players: [],
   tournaments: [],
   tournament: null
 });
-store.dispatch(playerActions.fetchPlayers('58fa6c699b463b491144772d'));
+store.dispatch(tournamentActions.fetchTournaments());
 
 render(
   <Provider store={store}>

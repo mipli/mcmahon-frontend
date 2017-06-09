@@ -106,6 +106,7 @@
     "url": ""
   },
   "jest": {
+    "modulePathIgnorePatterns": ["<"],
     "moduleNameMapper": {
       "\\.(css|scss)$": "identity-obj-proxy",
       "^.+\\.(gif|ttf|eot|svg|woff|woff2|ico)$": "<rootDir>/tools/fileMock.js"

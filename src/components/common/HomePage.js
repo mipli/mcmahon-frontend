@@ -5,7 +5,6 @@ import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 import TournamentForm from './TournamentForm';
 import * as tournamentActions from '../../actions/tournamentActions';
-import * as tournamentsActions from '../../actions/tournamentsActions';
 
 const mapStateToProps = (state) => {
   return {
@@ -16,8 +15,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     fetchTournament: tournamentActions.fetchTournament,
-    createTournament: tournamentsActions.createTournament,
-    fetchTournaments: tournamentsActions.fetchTournaments
+    createTournament: tournamentActions.createTournament,
+    fetchTournaments: tournamentActions.fetchTournaments
   }, dispatch);
 };
 

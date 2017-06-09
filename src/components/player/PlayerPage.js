@@ -43,19 +43,19 @@ class PlayerPage extends Component {
   get registerPlayer() {
     return (data) => {
       this.props.registerPlayer(this.props.tournamentId, data);
-    }
+    };
   }
 
   get updatePlayer() {
     return (data) => {
       this.props.updatePlayer(this.props.tournamentId, data);
-    }
+    };
   }
 
   get deletePlayer() {
     return (data) => {
       this.props.deletePlayer(this.props.tournamentId, data);
-    }
+    };
   }
 
   get selectedPlayer() {

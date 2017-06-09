@@ -1,5 +1,7 @@
 export default (state = null, action) => {
   switch (action.type) {
+    case 'CREATE_TOURNAMENT_SUCCESS':
+      return action.payload;
     case 'FETCH_TOURNAMENT_SUCCESS':
       return action.payload;
     case 'FETCH_ROUNDS_SUCCESS':
